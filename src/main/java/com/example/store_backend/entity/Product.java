@@ -13,11 +13,12 @@ import lombok.Setter;
 public class Product {
 
     @Id
-    @GeneratedValue
-    private @Getter @Setter int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private @Getter int id;
 
     private @Getter @Setter String title;
 
+    @Column( length = 100000 )
     private @Getter @Setter String description;
 
     private @Getter @Setter String category;

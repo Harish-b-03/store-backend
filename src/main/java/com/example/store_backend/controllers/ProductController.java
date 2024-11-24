@@ -5,6 +5,7 @@ import com.example.store_backend.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,13 +18,18 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @GetMapping("/")
+    public ResponseEntity<String> getInfo() {
+        return  ResponseEntity.ok().body("Server is up and running");
+    }
+
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts() {
         return  ResponseEntity.ok().body(productService.getAllProducts());
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductById(int id){
+    public ResponseEntity<Product> getProductById(@PathVariable int id){
         return ResponseEntity.ok().body(productService.getProductById(id));
     }
 }
